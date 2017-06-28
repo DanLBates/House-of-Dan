@@ -1,0 +1,28 @@
+Hz=600,WPM=6
+'Today we study Group3 which has "HONCV" characters.'
+  'Lets get started with "H" didididi'
+  H H H H H H H H H H H H H H H H H H H H HHHHHHHHHHHHHHHHHHHH
+  'Moving right along to "O" dahdahdah'
+  O O O O O O O O O O O O O O O O O O O O OOOOOOOOOOOOOOOOOOOO
+  'Lets do a short group of only "HO"'
+  HHHHH OOOOO OOHHH HOOOH OHOHO HOHOH HHHOO
+  'Time to add "N" dahdi'
+  N N N N N N N N N N N N N N N N N N N N NNNNNNNNNNNNNNNNNNNN
+  'Now lets try "HON"'
+  HHHHH NNNNN OOOOO NONOH HHNNO OONHH
+  'Lets keep on by learning "C" dahdidahdi'
+  C C C C C C C C C C C C C C C C C C C C CCCCCCCCCCCCCCCCCCCC
+  'Now a short group of "HONC"'
+  HHH CCC NNN OOO NNHH OOCC HOOC CNOH
+
+  'The last character of Group 3 is "V" didididah'
+  V V V V V V V V V V V V V V V V V V V V VVVVVVVVVVVVVVVVVVVV
+  'Now an exercize with all of Group 3 "HONCV"'
+  NNNHH HCCCV VVCCC OOOVC ONHOV HOHVC
+  'Now let exercize with Groups 1&2 "50ETARSLUQJ" and Group3 "HONCV" together.'
+ RA0O5 TTTTT QTASH HCHAO SSSSS JEUJU EEEEE
+ RL00Q RHO0U 0JE00 UUUUU ALVES JJJJJ R5AHE
+ QQQQQ JHHEQ CEEJJ TQLNN HT5O5 QATA5 5Q0EQ
+ EJNA5 UQUQH HUJQQ VOHVO SUE5T AAAAA JJJJJ
+  'When you are satisfied with this group you should next try G3mcp.txt'
+$

@@ -1,0 +1,45 @@
+Hz=600,WPM=6
+'PERIOD . '. . . . . .....
+'COMMA , ', , , , , ,,,,,
+'QUESTION MARK?' ? ? ? ? ? ?????
+'HYPEN - ' - - - - - -----
+'DOUBLE DASH _ ' _ _ _ _ _ _____
+'PARENTHESIS ( ' ( ( ( ( ( (((((
+'COLON : ' : : : : : :::::
+'SEMICOLON ; ' ; ; ; ; ; ;;;;;
+'QUOTE " ' " " " " " " """""
+'SLANT / ' / / / / / /////
+'AT @ ' @ @ @ @ @ @@@@@
+'PERIOD . '. . . . . .....
+'COMMA , ', , , , , ,,,,,
+'QUESTION MARK?' ? ? ? ? ? ?????
+'HYPEN - ' - - - - - -----
+'DOUBLE DASH _ ' _ _ _ _ _ _____
+'PARENTHESIS ( ' ( ( ( ( ( (((((
+'COLON : ' : : : : : :::::
+'SEMICOLON ; ' ; ; ; ; ; ;;;;;
+'QUOTE " ' " " " " " " """""
+'SLANT / ' / / / / / /////
+'AT @ ' @ @ @ @ @ @@@@@
+'PERIOD . '. . . . . .....
+'COMMA , ', , , , , ,,,,,
+'QUESTION MARK?' ? ? ? ? ? ?????
+'HYPEN - ' - - - - - -----
+'DOUBLE DASH _ ' _ _ _ _ _ _____
+'PARENTHESIS ( ' ( ( ( ( ( (((((
+'COLON : ' : : : : : :::::
+'SEMICOLON ; ' ; ; ; ; ; ;;;;;
+'QUOTE " ' " " " " " " """""
+'SLANT / ' / / / / / /////
+'AT @ ' @ @ @ @ @ @@@@@
+'PERIOD . '. . . . . .....
+'COMMA , ', , , , , ,,,,,
+'QUESTION MARK?' ? ? ? ? ? ?????
+'HYPEN - ' - - - - - -----
+'DOUBLE DASH _ ' _ _ _ _ _ _____
+'PARENTHESIS ( ' ( ( ( ( ( (((((
+'COLON : ' : : : : : :::::
+'SEMICOLON ; ' ; ; ; ; ; ;;;;;
+'QUOTE " ' " " " " " " """""
+'SLANT / ' / / / / / /////
+'AT @ ' @ @ @ @ @ @@@@@

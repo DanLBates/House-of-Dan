@@ -1,0 +1,25 @@
+Hz=600,WPM=6'Today we study Group2 which has "SLUQJ" characters.'
+  'Lets get started with "S" dididi'
+  S S S S S S S S S S S S S S S S S S S S SSSSSSSSSSSSSSSSSSSS
+  'Moving right along to "L" didahdidi'
+  L L L L L L L L L L L L L L L L L L L L LLLLLLLLLLLLLLLLLLLL
+  'Lets do a short group of only "SL"'
+  SSSSS LLLLL LLSSS SLLLS LSLSL SLSLS SSSLL
+  'Time to add "U" dididah'
+  U U U U U U U U U U U U U U U U U U U U UUUUUUUUUUUUUUUUUUUU
+  'Now lets try "SLU"'
+  SSSSS UUUUU LLLLL ULULS SSUUL LLUSS
+  'Lets keep on by learning "Q" dahdahdidah'
+  Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q Q QQQQQQQQQQQQQQQQQQQQ
+  'Now a short group of "SLUQ"'
+  SSS QQQ UUU LLL UUSS LLQQ SLUQ QULS
+  'The last character of Group 5 is "J" didahdahdah'
+  J J J J J J J J J J J J J J J J J J J J JJJJJJJJJJJJJJJJJJJJ
+  'Now an exercize with all of Group 5 "SLUQJ"'
+  UUUSS SQQQJ JJQQQ LLLJQ LUSLJ SLSJQ
+  'Now let exercize with Group1 "50ETAR" and Group2 "SLUQJ" together.'
+  EEEEE TJ0UQ QERQU ARASR SSSSS
+ AUQ50 JJJJJ RT0RS 0QUJR SLAUS
+ JJ0TT AAQRR JRLT5 TTTTT SSSSS
+  'When you are satisfied with this group you should next try G2mcp.txt'
+$

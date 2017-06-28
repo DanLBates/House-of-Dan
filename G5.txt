@@ -1,0 +1,23 @@
+Hz=600,WPM=6
+  'Well the next to last group, Group 5 consisting of "WKZM"'
+  'Good, Lets get started with "W" didahdah'
+  W W W W W W W W W W W W W W W W W W W W WWWWWWWWWWWWWWWWWWWW
+  'Moving right along we have "K" dahdidah'
+  K K K K K K K K K K K K K K K K K K K K KKKKKKKKKKKKKKKKKKKK
+  'Now for "Z" dahdahdidi'
+  Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z Z ZZZZZZZZZZZZZZZZZZZZ
+  'For Group 5, this is the last character "M" dahdah
+  M M M M M M M M M M M M M M M M M M M M MMMMMMMMMMMMMMMMMMMM
+  'Lets review Group 5 "WKZM"'
+ ZKKKZ ZMWMW ZZZZZ MMMKK KKZMK WMKKK
+ KKKKK ZZMMM ZZKZZ WZKWK MWMZW ZMZZZ
+ KWWZK MKZMM WWWKK ZKWWK KKWKM WKZZW
+ WKWKZ MMMMM KKWWM WZMMZ WWZZM WWWWW
+  'Good, time to review what we have studied - Groups 1-5 "50ETARSLUQTHONCVIBYPWKZM"'
+ QCVRI KMTQB MMMMM 0VZQN KLZA0 PTPQV HQHKN
+ ZZZZZ HECST BTROK LRTM0 MVVBS IL0LT MMUVW
+ U5RLM U0TC5 KKKKK 5MANC NVYYQ OOTZN HTSYN
+ WQHRP 5KK50 TL0CV YK0BT RPM05 SSZCM IPMIS
+ TNOLP LKEQI WWWWW TQTMN L5UKH OTLK5
+'When you are comfortable with Group 5, study G5mcp.txt'
+$

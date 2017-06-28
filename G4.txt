@@ -1,0 +1,28 @@
+Hz=600,WPM=5
+  'Today we study group 4 consisting of "IBYP"'
+  'We will do this a little different today,'
+  'We will do each group and then an excersize with'
+  'group 4'
+  'Good, Lets get started with "I" didi'
+  I I I I I I I I I I I I I I I I I I I I IIIIIIIIIIIIIIIIIIII
+  'Moving right along lets study "B" dahdididi'
+  B B B B B B B B B B B B B B B B B B B B BBBBBBBBBBBBBBBBBBBB
+  'We now add "Y" dahdidahdah to the letters we have studied'
+  Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y YYYYYYYYYYYYYYYYYYYY
+  'The last letter of Group 4 is "P" didahdahdi'
+  P P P P P P P P P P P P P P P P P P P P PPPPPPPPPPPPPPPPPPPP
+  'Now we review with all of Group 4 "IBYP"'
+ IIIII IYIPB IIYYI YIBPY BBYIY BPBIP
+ PYBPB IYYPY BIPPB YYIPI IBPYY YYYPI
+ PIIPB PPPPP IPIBP YIYYB IPPBP YPIIY
+ PYPPP IBIBI YYYYY IBIBY BPIBB IIPPB
+ YPYPI IYBPI BBBBB
+  'Good, now we will review Groups 1 thru 4 "50ETARSLUQTHONCVIBYP"'
+ SHHIL YYYYY VUSOS OPTNN 5NIAO VYCBO
+ SAOCR QVSNE CO0QU SYATP B5TTH BSTRQ 
+ HT5N0 BBBBB BVVEB Y5TSL POBTH YE5CN
+ QISTO 5I5NE TRB5C COYTP PRYL0 RPNPI
+ CPSIV PPPPP STHAV Q0HUI EBERI LRBV0 
+ IHLAL TEUTY LLART IIIII
+  'When you feel you should go on, attempt G4mcp.txt'
+$

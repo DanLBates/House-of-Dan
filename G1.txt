@@ -1,0 +1,24 @@
+Hz=600,WPM=6
+'We know introduce Group 1 which are "5","0","E","T","A","R"'
+ 'Lets get started with "5" which is dididididi'
+  5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 55555555555555555555
+  'Now for the next group 1 character which is "0" this is dahdahdahdahdah'
+  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 00000000000000000000
+  'lets have some practice groups of "5" and "0"'
+ 55555 00000 55005 05500 00050 55055 50505 05050 55555 00000          
+ 'To the mix let us add "E" which is recorded when we here dit'
+  E E E E E E E E E E E E E E E E E E E E EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+ 'Now let us practice with "5" "0" and "E"'
+  EEEEE 55555 00000 E50EE 00E55 0EEE5 5EEE5 0E0E0 EEEEE 00000 55555
+ 'Another character, "T" T is dah'
+  T T T T T T T T T T T T T T T T T T T T TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+  'Next character in the group is "A" which is represented didah'
+  A A A A A A A A A A A A A A A A A A A A AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  'The last character in this group if "R" represented by didahdi'
+  R R R R R R R R R R R R R R R R R R R R RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  'Now for a group of "TAR"'
+   TTRRA AAARR TTTTT RRRTA ATATA RTARA RRRRR TTTTT AAAAA ATRAT RATRT ARTAR RRATT
+  'Now to practice on all of group 1 "50ETAR"'
+  555RR 550EE AATTE 0T5E5 R0ETA RATE0 5RRTT EEAA0 05RAT RAT TEAR AT 50
+  'When you are satisfied with this group you should next try G1mcp.txt'
+$

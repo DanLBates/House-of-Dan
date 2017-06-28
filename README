@@ -1,0 +1,86 @@
+House-of-Dan README 27-Jun-2017 5:09:25 pm
+
+zzzzzzzzzzzzzzzz TBD. as_util_.s  Linux.s
+zzzzzzzzzzzzzzzz TBD 3 Morse Code Programs and associated text files.
+
+The book hacker's delight by Henry S. Warren ISBN 0-201-91465-4
+has an elegant algorithm for finding the 32 bit unsigned integer
+reciprocal of a divisor. This allows one to replace a division
+with a multiply, a shift and occaisionally needed add.
+This is found on page 185.
+
+I reworked the math and have 8 bit and 16 bit solutions as well.
+These are found in:
+
+SignedMagic.cpp    SignedMagic8.cpp   UnSignedMagic16.cpp
+SignedMagic16.cpp  UnSignedMagic.cpp  UnSignedMagic8.cpp
+
+The 8 bit and 16 bit are a logical extension as some 8 bit and
+16 bit architectures have no divide instruction. The software
+emulation of the divide is a very expensive operation.
+
+I once had to normalize an array of 8 bit atod values. This
+involved a subtract a multiply and 16 bit divide for every
+number in the array. The number for the subtract, the multiply
+and the divide was invarient with respect to the list.
+I used a varient of the 16 bit version of Magic
+which produced an h file containing the 256 16 bit values for
+the reciprocal, shift and optional add.
+
+Including the h file in a c interface which found the values
+needed by indexing into the table. The list and values were
+passed to an ARM 7 TDMI (w/o Divide) pipelined assembly
+function which normalized the values.
+
+I have even used the 8 bit version with Micro Chip 4520's
+with success.
+
+The classic 8 Queens placed on a Chess board which
+do not attack each other has had a elegant solution
+introduced by Dijkstra and Wirth. When coded in C or C++
+the elegance vanishes with the harsh bare bones array of
+the C language.
+
+With some MACROS for pointer arithmetic, The elegance is
+brought back to a C implementation: The use of Row+Column
+and Row-Column as an index in C. (keep use of array bound
+checking turned off). I Present:
+
+Queens8.c
+
+Scheme Toys to solve Word Logic problems.
+
+The tool kit to allow the problems to be solved is:
+
+amb.scm
+
+This has amb defined which causes backtracking to an earlier
+machine state. The machine states are saved with a
+call-with-current-continuation. There are also operations
+defined such as required, associated?, notassociated, permute,
+set-difference and others which the logic problems are defined
+with.
+
+Each of the logic problems:
+floors.scm
+lolla.scm
+sorority.scm
+einstein.scm
+kalotan.scm
+marriage.scm   and
+yachts.scm
+
+does a (load "amb.scm")
+to have access to the tool box.
+
+All these are in the R5RS dialect of scheme.
+To run these from Dr. Racket
+
+select
+
+Language
+    Choose Language
+        Other Languages
+            R5RS
+Run
+
