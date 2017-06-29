@@ -1,5 +1,5 @@
 Hz=600,WPM=6
-'We know introduce Group 1 which are "5","0","E","T","A","R"'
+'We now introduce Group 1 which are "5","0","E","T","A","R"'
  'Lets get started with "5" which is dididididi'
   5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 55555555555555555555
   'Now for the next group 1 character which is "0" this is dahdahdahdahdah'
