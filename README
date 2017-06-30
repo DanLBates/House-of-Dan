@@ -9,40 +9,169 @@ put them in the file:
 
 Linux.s
 
-Coming soon description of as_util_.s zzzzzzzzzzzzzzzzzzzz
+I wanted to both learn of the x64 changes and have a useful tool box
+should I want to develope more x86 64 bit assembly code.
 
-as_u_DisplayInline
+The test driver for as_util_.s is in the file. To assemble with the
+test driver - there is a .if 1 just before the line .globl _start.
+To have a tool box to link with another assembly source change the
+if 1 to a .if 0
+
+To build the utility:
+$ as as_util_.s -o as_util_.o
+$ ld as_util_.o -o as_util_
+
+To build for use with gdb add a -g option in the assemble step.
+
+All the globally defined entry points has as_u_ as a prefix.
+
+First as_u_DisplayInline has a message encoded in a zero terminated
+ascii string immediatly after the call as_u_DisplayInline.
+take care to use .asciz and no .ascii . To leave the zero termination
+off means a) we don't know how much to display and b) we don't know
+where to return to. No doubt we will find a 0 byte somewhere. The
+probable outcome would be some kind of fault. The .asciz provides
+the zero termination.
+ex:
         call as_u_DisplayInline
-        .asciz "message text"
-as_u_NL
+        .asciz "message text\n"
+
+as_u_NL merely displays the newline '\n' (0x0A ^J) character.
+ex:
         call as_u_NL
-as_u_Blank
+
+as_u_Blank is similar and displays an ascii space ' ' (0x20).
+ex:
         call as_u_Blank
-as_u_PhexCl     #number rax, nibbles in cl
+
+as_u_PhexCl takes the number in %rax and displays it in hexadecimal.
+The low order %cl nibbles are displayed.
+ex:
         call as_u_PhexCl
-as_u_Phex16     #number rax 16 nibbles
+
+as_u_Phex16 is much the same except the number of nibbles is 16.
+ex:
         call as_u_Phex16
-as_u_Phex8      #number rax 8 nibbles
+
+as_u_Phex8 is the same except the number of nibbles is 8.
+ex:
         call as_u_Phex8
-as_u_Phex4      #number rax 4 nibbles
-        call as_u_Phex4
-as_u_Phex2      #number rax 2 nibbles
-        call as_u_Phex2
-as_u_Phex1      #number rax 1 nibble
-        call as_u_Phex1
-as_u_DumpRIP    #print the return RIP in 16 nibbles
+as_u_Phex4  ditto 4 nibbles.
+
+as_u_Phex2  ditto 2 nibbles.
+
+as_u_Phex1  ditto 1 nibble.
+
+as_u_DumpRIP print out the location (address) of the next instruction
+after the call (a kind of trace).
+ex:
         call as_u_DumpRIP
-as_u_PSDec      #print rax signed
+
+as_u_PSDec   displays %rax as a ascii decimal number interpreted as
+signed.
+ex:
         call as_u_PSDec
-as_u_PUDec      #print rax unsigned
+
+as_u_PUDec   displays %rax as a ascii decimal number interpreted as
+unsigned.
+ex:
         call as_u_PUDec
-as_u_dump       #dump from %rcx to %rdx inclusive
+
+as_u_dump  displays a memory dump of the memory pointed to by %rcx
+to the memory pointed to by %rdx.
+ex:
         call as_u_dump
-... as_u_DumpRegs
+
+as_u_DumpRegs dumps the registers of the caller. Including the flags
+register and %rip.
+
+The output of the test driver looks somewhat like:
+$ as as_util_.s -o as_util_.o
+$ ld as_util_.o -o as_util_
+./as_util_
+FEDCBA9876543210
+76543210
+3210
+10
+0
+FEDCBA9876543210
+43210
+The first two
+   lines.
+The last line.
+RIP reaches 0000000000400107
+RIP reaches 000000000040010C
+RIP reaches 0000000000400111
+RIP reaches 0000000000400116
+RIP reaches 000000000040011B
+-1234567890
+18446744072474983726
+8
+9876543210
+
+rax=000000024CB016EA rbx=0000000000000000 rcx=0000000000000005 rdx=0000000000000000
+rsi=0000000000000000 rdi=0000000000000000 rbp=0000000000000000 rsp=00007FFD532CE510
+ r8=0000000000000000  r9=0000000000000000 r10=0000000000000000 r11=0000000000000206
+r12=0000000000000000 r13=0000000000000000 r14=0000000000000000 r15=0000000000000000
+  F=0000000000000206 rip=0000000000400160
+
+Now to test the dump function 1
+00007FFD532CE440 3B 06 40 00 00 00 00 00 D3 02 40 00 00 00 00 00 ;.@.......@.....
+00007FFD532CE450 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 ................
+00007FFD532CE460 01 00 00 00 00 00 00 00 3B 06 40 00 00 00 00 00 ........;.@.....
+00007FFD532CE470 60 01 40 00 00 00 00 00 7F 06 40 00 00 00 00 00 `.@.......@.....
+00007FFD532CE480 EA 16 B0 4C 02 00 00 00 00 00 00 00 00 00 00 00 ...L............
+00007FFD532CE490 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4A0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4B0 00 00 00 00 00 00 00 00 10 E5 2C 53 FD 7F 00 00 ..........,S....
+00007FFD532CE4C0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4D0 00 00 00 00 00 00 00 00 05 00 00 00 00 00 00 00 ................
+00007FFD532CE4E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4F0 EA 16 B0 4C 02 00 00 00 06 02 00 00 00 00 00 00 ...L............
+00007FFD532CE500 00 00 00 00 00 00 00 00 00                      .........
+
+Dump 2 seeded 4 same lines dump 2
+00007FFD532CE440 3B 06 40 00 00 00 00 00 D3 02 40 00 00 00 00 00 ;.@.......@.....
+00007FFD532CE450 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 ................
+00007FFD532CE460 01 00 00 00 00 00 00 00 3B 06 40 00 00 00 00 00 ........;.@.....
+00007FFD532CE470 60 01 40 00 00 00 00 00 7F 06 40 00 00 00 00 00 `.@.......@.....
+00007FFD532CE480 EA 16 B0 4C 02 00 00 00 00 00 00 00 00 00 00 00 ...L............
+00007FFD532CE490 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+                        SAME
+00007FFD532CE4C0 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4D0 00 00 00 00 00 00 00 00 05 00 00 00 00 00 00 00 ................
+00007FFD532CE4E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4F0 EA 16 B0 4C 02 00 00 00 06 02 00 00 00 00 00 00 ...L............
+00007FFD532CE500 00 00 00 00 00 00 00 00 00                      .........
+
+Now to test the dump function 3
+00007FFD532CE445                00 00 00 D3 02 40 00 00 00 00 00      .....@.....
+00007FFD532CE450 00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 ................
+00007FFD532CE460 01 00 00 00 00 00 00 00 3B 06 40 00 00 00 00 00 ........;.@.....
+00007FFD532CE470 60 01 40 00 00 00 00 00 7F 06 40 00 00 00 00 00 `.@.......@.....
+00007FFD532CE480 EA 16 B0 4C 02 00 00 00 00 00 00 00 00 00 00 00 ...L............
+00007FFD532CE490 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+                        SAME
+00007FFD532CE4C0 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4D0 00 00 00 00 00 00 00 00 05 00 00 00 00 00 00 00 ................
+00007FFD532CE4E0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................
+00007FFD532CE4F0 EA 16 B0 4C 02 00 00 00 06 02 00 00 00 00 00 00 ...L............
+00007FFD532CE500 00 00 00 00                                     ....
+
+Now a short dump of 6 bytes
+00007FFD532CE445                00 00 00 D3 02 40                     .....@
+
+The .s files in the repository are terminated with carriage return line feeds <CR><LF>.
+to use this on a Linux system (where it is for) feel free to change these to line feed's.
+
+Have Fun.
 
 ======================================================================
-Coming soon description of DanTypes.h zzzzzzzzzzzzzzzzzzzz
+DanTypes.h:
 
+Usefull Types and Macros developed and imported over years.
+Most of these when used make things easier and the intent of
+the Code more transparent.
 ======================================================================
 The book hacker's delight by Henry S. Warren ISBN 0-201-91465-4
 has an elegant algorithm for finding the 32 bit unsigned integer
@@ -132,6 +261,12 @@ yachts.scm
 
 does a (load "amb.scm")
 to have access to the tool box.
+
+The key to all this is permute which saves the machine state and
+generates a new permutation. If there is an amb-fail - it restores
+to the permute and permute generates the next permutation. When
+permute runs out of permutation it introduce a amb-fail of it's
+own.
 
 All these are in the R5RS dialect of scheme.
 To run these from Dr. Racket

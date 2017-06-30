@@ -47,6 +47,7 @@ _start:
         movq    $9876543210,%rax
         call    as_u_PUDec
         call    as_u_NL
+        call    as_u_DumpRegs
 
         call    as_u_DisplayInline
         .asciz  "\nNow to test the dump function 1"
@@ -620,4 +621,73 @@ dump_chk_same:
         popq    %rdi
         popq    %rsi
         popq    %rcx
+        ret
+        .page
+#FUNCTION as_u_DumpReg: This dumps the callers registers. The normal
+# working registers not floating point or MM
+        .globl as_u_DumpRegs
+as_u_DumpRegs:
+        pushfq                  #also dumps flags
+        pushq   %r15
+        pushq   %r14            #put all registers on stack
+        pushq   %r13
+        pushq   %r12
+        pushq   %r11
+        pushq   %r10
+        pushq   %r9
+        pushq   %r8
+        lea     80(%rsp),%r8    #we want what %rsp was
+        push    %r8
+        pushq   %rbp
+        pushq   %rdi
+        pushq   %rsi
+        pushq   %rdx
+        pushq   %rcx
+        pushq   %rbx
+        pushq   %rax
+# all registers on stack
+        movq    %rsp,%rbp
+        call    1f              #address table of register names
+        .ascii  "\nrax rbx rcx rdx\nrsi rdi rbp rsp"
+        .ascii  "\n r8  r9 r10 r11\nr12 r13 r14 r15"
+        .ascii  "\n  F rip"
+1:
+        popq    %rbx
+        movw    $18,%cx         #18 things to be printed
+1:                              # let us print the text part
+        movq    %rbx,%rsi       # address of text to print
+        movq    $4,%rdx         # 4 bytes to display each text
+        movq    $STDOUT,%rdi    # to the standard output
+        movq    $sys_write,%rax # we do want to write
+        pushq   %rcx            #%rcx not saved
+        syscall
+        popq    %rcx
+        call    as_u_DisplayInline
+        .asciz  "="
+# now to display the register
+        movq    (%rbp),%rax     #rbp is address of
+        call    as_u_Phex16
+# next text and next reg
+        addq    $4,%rbx
+        addq    $8,%rbp
+          loop  1b              #till cx is zero
+        call    as_u_NL
+# we used any register we wanted cause every thing is on the stack
+        popq    %rax
+        popq    %rbx
+        popq    %rcx
+        popq    %rdx
+        popq    %rsi
+        popq    %rdi
+        popq    %rbp
+        addq    $8,%rsp         #nor do we wish to pop this, so skip
+        popq    %r8
+        popq    %r9
+        popq    %r10
+        popq    %r11
+        popq    %r12
+        popq    %r13
+        popq    %r14
+        popq    %r15
+        popfq
         ret
