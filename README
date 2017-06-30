@@ -1,13 +1,57 @@
-House-of-Dan README 27-Jun-2017 5:09:25 pm
+House-of-Dan README 29-Jun-2017 6:22:16 pm
 
-zzzzzzzzzzzzzzzz TBD. as_util_.s  Linux.s
-zzzzzzzzzzzzzzzz TBD 3 Morse Code Programs and associated text files.
+I wanted to play with the 64 bit x86 architecture. The Ubuntu
+distribution of Linux had the AT&T syntax assembler. The linker ld and
+the debugger gdb.
 
+I took the documentation I could find on the 64 bit Linux call and
+put them in the file:
+
+Linux.s
+
+Coming soon description of as_util_.s zzzzzzzzzzzzzzzzzzzz
+
+as_u_DisplayInline
+        call as_u_DisplayInline
+        .asciz "message text"
+as_u_NL
+        call as_u_NL
+as_u_Blank
+        call as_u_Blank
+as_u_PhexCl     #number rax, nibbles in cl
+        call as_u_PhexCl
+as_u_Phex16     #number rax 16 nibbles
+        call as_u_Phex16
+as_u_Phex8      #number rax 8 nibbles
+        call as_u_Phex8
+as_u_Phex4      #number rax 4 nibbles
+        call as_u_Phex4
+as_u_Phex2      #number rax 2 nibbles
+        call as_u_Phex2
+as_u_Phex1      #number rax 1 nibble
+        call as_u_Phex1
+as_u_DumpRIP    #print the return RIP in 16 nibbles
+        call as_u_DumpRIP
+as_u_PSDec      #print rax signed
+        call as_u_PSDec
+as_u_PUDec      #print rax unsigned
+        call as_u_PUDec
+as_u_dump       #dump from %rcx to %rdx inclusive
+        call as_u_dump
+... as_u_DumpRegs
+
+======================================================================
+Coming soon description of DanTypes.h zzzzzzzzzzzzzzzzzzzz
+
+======================================================================
 The book hacker's delight by Henry S. Warren ISBN 0-201-91465-4
 has an elegant algorithm for finding the 32 bit unsigned integer
-reciprocal of a divisor. This allows one to replace a division
-with a multiply, a shift and occaisionally needed add.
-This is found on page 185.
+reciprocal of a number. This allows one to replace a division
+(by a constant) with a multiply, a shift and occasionally
+needed add. This is found on page 185.
+
+This replaces division by a constant or division by a one of a
+limited number of constants.
 
 I reworked the math and have 8 bit and 16 bit solutions as well.
 These are found in:
@@ -19,22 +63,37 @@ The 8 bit and 16 bit are a logical extension as some 8 bit and
 16 bit architectures have no divide instruction. The software
 emulation of the divide is a very expensive operation.
 
+I have worked through the math twice to convince myself this
+works. Still since it seems like magic (I named the program
+magic), I added a check dividing every number in the
+domain by the constant and comparing with the magic method.
+For 32 bits this takes several minutes, so the check is by
+request. For 16 and 8 bits the check is fast enough to just
+do it. I would note that I have never had the check find a
+problem, except for the finagling to test the check code.
+
+The same technique can be extended to 64 bits. However, the 64 bit
+architectures have a divide - so what's the point. If a 64 bit
+extension is coded you can forget about the test as the mean time
+between failures will always cause it not to complete.
+
 I once had to normalize an array of 8 bit atod values. This
 involved a subtract a multiply and 16 bit divide for every
 number in the array. The number for the subtract, the multiply
-and the divide was invarient with respect to the list.
-I used a varient of the 16 bit version of Magic
+and the divide was invariant with respect to the atod trace.
+I used a variant of the 16 bit version of Magic
 which produced an h file containing the 256 16 bit values for
-the reciprocal, shift and optional add.
+the reciprocal, the shift and the optional add.
 
 Including the h file in a c interface which found the values
 needed by indexing into the table. The list and values were
-passed to an ARM 7 TDMI (w/o Divide) pipelined assembly
-function which normalized the values.
+passed to an architecture ARM7TDMI (w/o Divide) where a
+pipelined assembly function which normalized the values.
 
 I have even used the 8 bit version with Micro Chip 4520's
 with success.
 
+======================================================================
 The classic 8 Queens placed on a Chess board which
 do not attack each other has had a elegant solution
 introduced by Dijkstra and Wirth. When coded in C or C++
@@ -48,6 +107,7 @@ checking turned off). I Present:
 
 Queens8.c
 
+======================================================================
 Scheme Toys to solve Word Logic problems.
 
 The tool kit to allow the problems to be solved is:
@@ -84,3 +144,193 @@ Language
             R5RS
 Run
 
+======================================================================
+Included is a International Morse Code Practice program. Before we
+discuss that I wish to talk about 2 support programs for the Morse
+Practice program.
+
+first: MorseCodeTables.c
+This program reads in a definition of the International Morse Code and
+produces a dot h file : MorseTable.h
+
+which is included in the compilation of MCP.c.
+The source read in is: MorseTones.txt
+The definitions look like:
+X -..-
+Y -.--
+Z --..
+1 .----
+2 ..---
+3 ...--
+No Morse Code symbol with the exception of "error" (8 dits) has more
+than 7 elements.
+This allows each symbol to be stored in a byte. Since to encoding is
+not a fixed length of elements (di's or dah's) we add a special stop
+bit to indicate the end of the symbol. Just like serial encoding the
+lowest bit is sent first. As we send each element (0=dit, 1=dah) we
+shift right. When we see the byte as 0 or 1 (the stop bit) we are
+done.
+MorseTable.h looks like:
+/*8*/ 0x27, /*9*/ 0x2f, /*:*/ 0x47, /*;*/ 0x55, /*<*/ 0x00, /*=*/ 0x00, /*>*/ 0x00, /*?*/ 0x4c,
+/*@*/ 0x56, /*A*/ 0x06, /*B*/ 0x11, /*C*/ 0x15, /*D*/ 0x09, /*E*/ 0x02, /*F*/ 0x14, /*G*/ 0x0b,
+/*H*/ 0x10, /*I*/ 0x04, /*J*/ 0x1e, /*K*/ 0x0d, /*L*/ 0x12, /*M*/ 0x07, /*N*/ 0x05, /*O*/ 0x0f,
+
+The other support program is: mcpexergen.c
+This generates random code groups to use with the MCP program.
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Users\Dan Bates>cd \DADS\MySoftware\Public
+
+C:\DADS\MySoftware\Public>mcpexergen
+
+characters for exercize:ABCD05
+
+GroupSize:5
+
+No of groups to generate:20
+
+Output File Name:x.t
+
+characters   = ABCD05
+No of chars  = 6
+Group size   = 5
+No of Groups = 20
+out file     = x.t
+Start generation?Y
+A05AA5505DBABBBDAAC5DA5CACBA05BACACB5BAD5D5CBABDA0D50AD5DC0A500CDDA0ACDDAB00ABBB
+DAA0DBD0ACDB550BCDC0
+Complete!!!
+
+In this case x.t would look like:
+A05AA 5505D BABBB DAAC5 DA5CA CBA05 BACAC B5BAD 5D5CB ABDA0
+D50AD 5DC0A 500CD DA0AC DDAB0 0ABBB DAA0D BD0AC DB550 BCDC0
+
+This needs only 1 line added to the beginning to be a source for MCP.
+that line looks like:
+Hz=600,WPM=6
+where we want the Morse Tones to be at a frequency of 600 Hertz and
+the rate sent to be 6 words per minute. The rate is calculated using the
+words "PARIS" and "CODEX". Real copy will be slower for long words and
+faster for shorter words.
+
+This brings us to the Morse Code Practice Program itself: MCP.c
+
+This is invoked in a DOS or Linux equivalent as
+MCP testdata.txt
+
+The first line of the testdata gives Tone frequency and speed in Words Per
+Minute. ex: Hz=800,WPM=7 (600 hertz is more common.
+If the last line of testdata is the dollar '$' alone the test data is
+treated as one message to be tested with or played as a whole.
+No $ on end then each line is a independent test/play phrase.
+
+The banner for the program is displayed when MCP is executed:
+
+Morse Code Practice program MCP 0.0     16-June-2017
+
+Then menu for the program is then displayed:
+
+MCP 0.0 16-June-2017
+Number of Strings = 204
+Words Per Minute = 6
+ dittime=166 dahtime=498 elementspace=166 charspace=498 wordspace=1162
+ #-Plays=0 #-Tests=0 Errors=0
+^A Show the answer phrase          ^C Control vars
+^E Echo back phrase                ^H Help with character
+^Q quit/exit                       ^M this menu
+^P Play All                        ^R Resend last character
+^S select a test phrase Randomly   ^T Test you one char at a time
+^V Show Error Count                ^X quit/exit
+^Z Whatever Test function we need! 0  Zero the Test Count.
+
+When not testing a phrase the control key with the function is not
+needed ex: ^M is equivalent to M.
+
+If the test data is not one big phrase (no $ at the bottom), you
+select a phrase with 'S'
+This selects one of the phrases randomly. It also selects a skip value
+from a list of prime numbers. If the skip divides the number of phrases,
+then we make skip go to the next prime in the list with wrap-around
+until it does not evenly divide the number of phrases. By adding skip in
+a modulo fashion for each new select, this will go
+through every phrase before repeating. When the initial phrase is
+repeated we go to the next prime in the list in the same fashion as
+before.
+
+To cheat use 'A'. Or play the phrase writing it down then use A to check.
+
+'P' plays the phrase for you to copy. This is where you want to be.
+
+'T' Outputs each character and waits for you to type it back in.
+If you want to hear the character again - type control ^R. If you don't know
+and want to skip type ^H, this shows the character lower case and
+continues. If you type the wrong character the program will complain with
+a beep (1000Hz) and wait for you to enter the character again.
+To give up type ^M.
+
+If there are a few characters you want a quick review of the Echo 'E'
+will let you type in a phrase and then play it and/or test with it.
+
+When you get over wanting to test, but find the speed of play a little
+much - you can cheat with the 'C' Control Vars.
+The following example puts 1 second after each charater and 2 seconds
+after each word:
+
+Hertz for tone:600 Change Yes or No?N
+
+Words Per Minute:6 Change Yes or No?N
+
+Dittime:166 Change Yes or No?N
+
+Dahtime:498 Change Yes or No?N
+
+Element Space:166 Change Yes or No?N
+
+Character Space:498 Change Yes or No?Y
+Character Space:1000
+
+Word Space:1162 Change Yes or No?Y
+Word Space:2000
+
+Control Vars Done
+If you do change Word Per Minute then Dittime, Dahtime, Element Space,
+Character Space and Word Space are recalculated.
+
+There are a number of practice files in the repository.
+mcp.txt         - A lot of phrases some numbers.
+difficult.txt   - Phrases a little more difficult then mcp.txt
+mcpnumbers.txt  - Just numbers
+mcppunc.txt     - Punctuation marks
+mcpran5.txt     - 5 letter random code groups A to Z with numbers.
+
+MCP has a scripting capability. International Morse Code has an
+apostrophe ` and does not have the equivalent to ascii single quote '.
+text with in single quotes ' is simply output. This give MCP a crude
+ability to tutor one in International Morse Code.
+
+We split the alphabetics and some of the numbers as follows:
+Group 1  50ETAR
+Group 2  SLUQJ
+Group 3  HONCV
+Group 4  IBYP
+Group 5  WKZM
+Group 6  DXFG
+
+G1.txt  --- Introduces group 1.
+G2.txt  --- adds group 2 and reviews 1 & 2.
+G3.txt  --- adds group 3 and reviews 1,2 & 3.
+G4.txt  --- adds group 4 and reviews 1,2,3 & 4
+G5.txt  --- adds group 5 and reviews 1..4 & 5
+G6.txt  --- adds group 6 and reviews all groups
+
+G1mcp.txt --- group 1 practice
+G2mcp.txt --- groups 1 & 2 practice.
+G3mcp.txt --- groups 1,2 & 3 practice.
+G4mcp.txt --- groups 1..4 practice.
+G5mcp.txt --- groups 1..5 practice.
+
+The MCP.c source does use the windows.h interface Beep. To move
+to Linux a suitable replacement would have to be found.
+
+Note: this exercize program does not take the place of other
+learning help such as ARRL practice sessions.
