@@ -111,6 +111,9 @@ typedef unsigned long long QUAD;
 #define BITVALSGN(val,lowbitno,nbits)   ((val << (32-lowbitno-nbits)) >> (32-nbits))
 #define BITVALSGN64(val,lowbitno,nbits) ((val << (64-lowbitno-nbits)) >> (64-nbits))
 
+// LOWESTBITSET Just to round out the fielc
+#define LOWESTBITSETHELPER(x) ((-x) & x)
+#define LOWESTBITSET(X) LOWESTBITSETHELPER(((signed) (x)))
 //Define signed division by 2^n  ----- x must have the attribute signed
 #define SIGNEDDIV_2totheN(x,n) (((x) + (((x) >> 31) & MASK(0,(n)))) >> (n))
 #define SIGNEDDIV_2(x)  (((x) - ((x) >> 31)) >> 1)
@@ -134,6 +137,7 @@ typedef unsigned long long QUAD;
 #endif
 
 #define MAX3(x,y,z)               (MAX(MAX((x),(y)),(z)))
+
 #define LOWBOUNDED(lo, x)         (MAX((lo), (x)))
 #define HIGHBOUNDED(x, hi)        (MIN((x), (hi)))
 #define LOWHIGHBOUNDED(lo, x, hi) (HIGHBOUNDED(LOWBOUNDED((lo), (x)), (hi)))

@@ -1,21 +1,21 @@
-House-of-Dan README 29-Jun-2017 6:22:16 pm
+House-of-Dan README 06-Jul-2017 6:07:01 pm
 
-I wanted to play with the 64 bit x86 architecture. The Ubuntu
+I wanted to play with the  x86-64 architecture. The Ubuntu
 distribution of Linux had the AT&T syntax assembler. The linker ld and
 the debugger gdb.
 
-I took the documentation I could find on the 64 bit Linux call and
+I took the documentation I could find on the 64 bit Linux calls and
 put them in the file:
 
 Linux.s
 
 I wanted to both learn of the x64 changes and have a useful tool box
-should I want to develope more x86 64 bit assembly code.
+should I want to develope more x86-64 bit assembly code.
 
 The test driver for as_util_.s is in the file. To assemble with the
-test driver - there is a .if 1 just before the line .globl _start.
+test driver - there is a ".if 1" just before the line .globl _start.
 To have a tool box to link with another assembly source change the
-if 1 to a .if 0
+".if 1" to a ".if 0"
 
 To build the utility:
 $ as as_util_.s -o as_util_.o
@@ -23,11 +23,11 @@ $ ld as_util_.o -o as_util_
 
 To build for use with gdb add a -g option in the assemble step.
 
-All the globally defined entry points has as_u_ as a prefix.
+All the globally defined entry points have as_u_ as a prefix.
 
 First as_u_DisplayInline has a message encoded in a zero terminated
 ascii string immediatly after the call as_u_DisplayInline.
-take care to use .asciz and no .ascii . To leave the zero termination
+take care to use .asciz and not .ascii . To leave the zero termination
 off means a) we don't know how much to display and b) we don't know
 where to return to. No doubt we will find a 0 byte somewhere. The
 probable outcome would be some kind of fault. The .asciz provides
@@ -36,7 +36,7 @@ ex:
         call as_u_DisplayInline
         .asciz "message text\n"
 
-as_u_NL merely displays the newline '\n' (0x0A ^J) character.
+as_u_NL merely displays the newline '\n' (0x0A, ^J) character.
 ex:
         call as_u_NL
 
@@ -62,7 +62,7 @@ as_u_Phex2  ditto 2 nibbles.
 
 as_u_Phex1  ditto 1 nibble.
 
-as_u_DumpRIP print out the location (address) of the next instruction
+as_u_DumpRIP prints out the location (address) of the next instruction
 after the call (a kind of trace).
 ex:
         call as_u_DumpRIP
@@ -78,7 +78,7 @@ ex:
         call as_u_PUDec
 
 as_u_dump  displays a memory dump of the memory pointed to by %rcx
-to the memory pointed to by %rdx.
+through the memory pointed to by %rdx.
 ex:
         call as_u_dump
 
@@ -161,19 +161,20 @@ Now to test the dump function 3
 Now a short dump of 6 bytes
 00007FFD532CE445                00 00 00 D3 02 40                     .....@
 
-The .s files in the repository are terminated with carriage return line feeds <CR><LF>.
-to use this on a Linux system (where it is for) feel free to change these to line feed's.
+The .s files in the repository are terminated with carriage return line feeds.
+To use this on a Linux system (where it is intended for) feel free to change
+these to line feed's.
 
 Have Fun.
 
 ======================================================================
 DanTypes.h:
 
-Usefull Types and Macros developed and imported over years.
+Useful Types and Macros developed and imported over years.
 Most of these when used make things easier and the intent of
 the Code more transparent.
 ======================================================================
-The book hacker's delight by Henry S. Warren ISBN 0-201-91465-4
+The book 'Hacker's Delight' by Henry S. Warren ISBN 0-201-91465-4
 has an elegant algorithm for finding the 32 bit unsigned integer
 reciprocal of a number. This allows one to replace a division
 (by a constant) with a multiply, a shift and occasionally
@@ -199,12 +200,13 @@ domain by the constant and comparing with the magic method.
 For 32 bits this takes several minutes, so the check is by
 request. For 16 and 8 bits the check is fast enough to just
 do it. I would note that I have never had the check find a
-problem, except for the finagling to test the check code.
+problem, except for finagling of the test needed to verify
+the validity of the check code.
 
 The same technique can be extended to 64 bits. However, the 64 bit
 architectures have a divide - so what's the point. If a 64 bit
-extension is coded you can forget about the test as the mean time
-between failures will always cause it not to complete.
+extension is coded you can forget about the test as the run time
+would be years.
 
 I once had to normalize an array of 8 bit atod values. This
 involved a subtract a multiply and 16 bit divide for every
@@ -217,7 +219,7 @@ the reciprocal, the shift and the optional add.
 Including the h file in a c interface which found the values
 needed by indexing into the table. The list and values were
 passed to an architecture ARM7TDMI (w/o Divide) where a
-pipelined assembly function which normalized the values.
+pipelined assembly function normalized the values.
 
 I have even used the 8 bit version with Micro Chip 4520's
 with success.
@@ -231,8 +233,8 @@ the C language.
 
 With some MACROS for pointer arithmetic, The elegance is
 brought back to a C implementation: The use of Row+Column
-and Row-Column as an index in C. (keep use of array bound
-checking turned off). I Present:
+and Row-Column as an index in C. (you need to have array bound
+checking disabled). I Present:
 
 Queens8.c
 
@@ -265,7 +267,7 @@ to have access to the tool box.
 The key to all this is permute which saves the machine state and
 generates a new permutation. If there is an amb-fail - it restores
 to the permute and permute generates the next permutation. When
-permute runs out of permutation it introduce a amb-fail of it's
+permute runs out of permutations it introduces a amb-fail of it's
 own.
 
 All these are in the R5RS dialect of scheme.
@@ -312,9 +314,6 @@ MorseTable.h looks like:
 
 The other support program is: mcpexergen.c
 This generates random code groups to use with the MCP program.
-(c) 2013 Microsoft Corporation. All rights reserved.
-
-C:\Users\Dan Bates>cd \DADS\MySoftware\Public
 
 C:\DADS\MySoftware\Public>mcpexergen
 
@@ -336,7 +335,7 @@ A05AA5505DBABBBDAAC5DA5CACBA05BACACB5BAD5D5CBABDA0D50AD5DC0A500CDDA0ACDDAB00ABBB
 DAA0DBD0ACDB550BCDC0
 Complete!!!
 
-In this case x.t would look like:
+In this case x.t would look this although the numbers would be different:
 A05AA 5505D BABBB DAAC5 DA5CA CBA05 BACAC B5BAD 5D5CB ABDA0
 D50AD 5DC0A 500CD DA0AC DDAB0 0ABBB DAA0D BD0AC DB550 BCDC0
 
@@ -398,7 +397,7 @@ To cheat use 'A'. Or play the phrase writing it down then use A to check.
 
 'T' Outputs each character and waits for you to type it back in.
 If you want to hear the character again - type control ^R. If you don't know
-and want to skip type ^H, this shows the character lower case and
+and want to skip type ^H, this shows the character in lower case and
 continues. If you type the wrong character the program will complain with
 a beep (1000Hz) and wait for you to enter the character again.
 To give up type ^M.
@@ -440,7 +439,7 @@ mcpran5.txt     - 5 letter random code groups A to Z with numbers.
 
 MCP has a scripting capability. International Morse Code has an
 apostrophe ` and does not have the equivalent to ascii single quote '.
-text with in single quotes ' is simply output. This give MCP a crude
+text within single quotes is simply output. This give MCP a crude
 ability to tutor one in International Morse Code.
 
 We split the alphabetics and some of the numbers as follows:
