@@ -468,3 +468,42 @@ to Linux a suitable replacement would have to be found.
 
 Note: this exercize program does not take the place of other
 learning help such as ARRL practice sessions.
+
+======================================================================
+Of late (2017-07) I have been learning Python with the help of books
+and New Boston videos.
+
+To exercize some of the elegant features of Python I wrote this
+program which solves Bucket puzzles with up to 3 Buckets. I labeled
+these A, B and C. To solve a 2 bucket problem is easy - make the
+capacity of C be 0.
+
+In a Bucket puzzle, the goal is to have a certain amount of liquid
+in either a single bucket or the sum of some combination of buckets.
+
+The operations permitted are:
+1) To empty a single bucket
+2) To fill a single bucket to capacity (ex: from a pond or a hose)
+3) To pour a Bucket x into a bucket y until one of these is true:
+	a) bucket x is empty and bucket y is not full.
+	b) bucket y is full (at capacity) and bucket x may or may not
+		have liquid left in it.
+
+The units can be anything since they apply to all the buckets
+(ex: gallons or barrels).
+
+The method by creating a state tree and doing a breadth first search.
+When a solution is found, we recursivly follow the back links to
+the initial state and print the states and operations out before
+returning.
+
+If the tree becomes exhausted w/o finding the goal a message is
+printed to inform of this fact.
+
+The program prompts for the goal, the bucket capacities and
+initial state of the buckets (typically 0). For fun the initial
+state does not have to be possible (<= capacity).
+
+Have Fun
+For your perusal:
+BucketPuzzle.py
