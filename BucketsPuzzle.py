@@ -1,54 +1,54 @@
-# This tries to solve a question of How to obtain a specified amount of liquid
-# in any one of three buckets or any combination of buckets.
-#
-# The method is a breadth first search.
-#
-# To start we have the capacity of the bucket A_capacity, B_capacity and
-# C_capacity. The units don't matter as long as every specified amount is in
-# the same units.
-# We also have the initial amount in each bucket A_has, B_has and C_has
-# the last specified quantity is the amount of liquid we desire.
-#
-# The initial parameters are put into a list.
-# we traverse the list generating new states.
-# To get a new state we can perform any one of the following:
-#   Pour out A making A_has = 0
-#   Pour out B making B_has = 0
-#   Pour out C making C_has = 0
-#   Fill A completely making A_has = A_capacity
-#   Fill B completely making B_has = B_capacity
-#   Fill C completely making C_has = C_capacity
-#
-#   if A_has >= B_capacity - B_has we fill B from A
-#       A_has = A_has - (B_capacity - B_has); B_has = B_capacity
-#   if A_has >= C_capacity - C_has we fill C from A
-#       A_has = A_has - (C_capacity - C_has); C_has = C_capacity
-#   if B_has >= C_capacity - C_has we fill C from A
-#       B_has = B_has - (C_capacity - C_has); C_has = C_capacity
-#   if B_has >= A_capacity - A_has we fill A from B
-#       B_has = B_has - (A_capacity - A_has); A_has = A_capacity
-#   if C_has >= A_capacity - A_has we fill A from C
-#       C_has = C_has - (A_capacity - C_has); A_has = A_capacity
-#   if C_has >= B_capacity - C_has we fill B from C
-#       C_has = C_has - (B_capacity - B_has); B_has = B_capacity
-#
-#   if A_has < B_capacity - B_has we fill B from A
-#       B_has = A_has + B_has; A_has = 0
-#   if A_has < C_capacity - C_has we fill C from A
-#       B_has = A_has + C_has; A_has = 0
-#   if B_has < C_capacity - C_has we fill C from B
-#       C_has = B_has + C_has; B_has = 0
-#   if B_has < A_capacity - A_has we fill A from B
-#       A_has = A_has + B_has; B_has = 0
-#   if C_has < A_capacity - A_has we fill A from C
-#       A_has = A_has + C_has; C_has = 0
-#   if C_has < B_capacity - N_has; C_has=0
-#
-#   To reduce to 2 Bucket problem make C_capacity = 0
-#
-#   A new generated state is never appended to the list if a state
-#       with A_has, B_has and C_has is already on the list (We want shortest)
-#
+''' This tries to solve a question of How to obtain a specified amount of liquid
+    in any one of three buckets or any combination of buckets.
+
+    The method is a breadth first search.
+
+     To start we have the capacity of the bucket A_capacity, B_capacity and
+     C_capacity. The units don't matter as long as every specified amount is in
+     the same units.
+     We also have the initial amount in each bucket A_has, B_has and C_has
+     the last specified quantity is the amount of liquid we desire.
+
+     The initial parameters are put into a list.
+     we traverse the list generating new states.
+     To get a new state we can perform any one of the following:
+       Pour out A making A_has = 0
+       Pour out B making B_has = 0
+       Pour out C making C_has = 0
+       Fill A completely making A_has = A_capacity
+       Fill B completely making B_has = B_capacity
+       Fill C completely making C_has = C_capacity
+
+       if A_has >= B_capacity - B_has we fill B from A
+           A_has = A_has - (B_capacity - B_has); B_has = B_capacity
+       if A_has >= C_capacity - C_has we fill C from A
+           A_has = A_has - (C_capacity - C_has); C_has = C_capacity
+       if B_has >= C_capacity - C_has we fill C from A
+           B_has = B_has - (C_capacity - C_has); C_has = C_capacity
+       if B_has >= A_capacity - A_has we fill A from B
+           B_has = B_has - (A_capacity - A_has); A_has = A_capacity
+       if C_has >= A_capacity - A_has we fill A from C
+           C_has = C_has - (A_capacity - C_has); A_has = A_capacity
+       if C_has >= B_capacity - C_has we fill B from C
+           C_has = C_has - (B_capacity - B_has); B_has = B_capacity
+
+       if A_has < B_capacity - B_has we fill B from A
+           B_has = A_has + B_has; A_has = 0
+       if A_has < C_capacity - C_has we fill C from A
+           B_has = A_has + C_has; A_has = 0
+       if B_has < C_capacity - C_has we fill C from B
+           C_has = B_has + C_has; B_has = 0
+       if B_has < A_capacity - A_has we fill A from B
+           A_has = A_has + B_has; B_has = 0
+       if C_has < A_capacity - A_has we fill A from C
+           A_has = A_has + C_has; C_has = 0
+       if C_has < B_capacity - N_has; C_has=0
+
+       To reduce to 2 Bucket problem make C_capacity = 0
+
+       A new generated state is never appended to the list if a state
+           with A_has, B_has and C_has is already on the list (We want shortest)
+'''
 
 def PrintSolution(i):
     backindx, msg, a, b, c = List[i]
