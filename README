@@ -492,7 +492,7 @@ The operations permitted are:
 The units can be anything since they apply to all the buckets
 (ex: gallons or barrels).
 
-The method by creating a state tree and doing a breadth first search.
+The method is by creating a state tree and doing a breadth first search.
 When a solution is found, we recursivly follow the back links to
 the initial state and print the states and operations out before
 returning.

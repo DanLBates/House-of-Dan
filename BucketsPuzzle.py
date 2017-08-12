@@ -92,53 +92,53 @@ def MaybeAdd(listelement):
 def Generate (indx):
     bl,msg,A,B,C = List[indx]
     if A > 0:
-        MaybeAdd([indx, "Pour Out A", 0, B, C])
+        MaybeAdd((indx, "Pour Out A", 0, B, C))
     if B > 0:
-        MaybeAdd([indx, "Pour Out B", A, 0, C])
+        MaybeAdd((indx, "Pour Out B", A, 0, C))
     if C > 0:
-        MaybeAdd([indx, "Pour Out C", A, B, C])
+        MaybeAdd((indx, "Pour Out C", A, B, C))
     if A < A_capacity:
-        MaybeAdd([indx, "Fill Up A", A_capacity, B, C])
+        MaybeAdd((indx, "Fill Up A", A_capacity, B, C))
     if B < B_capacity:
-        MaybeAdd([indx, "Fill up B", A, B_capacity, C])
+        MaybeAdd((indx, "Fill up B", A, B_capacity, C))
     if C < C_capacity:
-        MaybeAdd([indx, "Fill up C", A, B, C_capacity])
+        MaybeAdd((indx, "Fill up C", A, B, C_capacity))
     A_left = A_capacity - A
     B_left = B_capacity - B
     C_left = C_capacity - C
     if A > 0:
         if B_left > 0:
             if A >= B_left:
-                MaybeAdd([indx, "Pour A into B", (A - B_left), B_capacity, C])
+                MaybeAdd((indx, "Pour A into B", (A - B_left), B_capacity, C))
             else:
-                MaybeAdd([indx, "Pour A into B", 0, (A + B), C])
+                MaybeAdd((indx, "Pour A into B", 0, (A + B), C))
         if C_left > 0:
             if A > C_left:
-                MaybeAdd([indx, "Pour A into C", (A - C_left), B, C_capacity])
+                MaybeAdd((indx, "Pour A into C", (A - C_left), B, C_capacity))
             else:
-                MaybeAdd([indx, "Pour A into C", 0, B, (A + C)])
+                MaybeAdd((indx, "Pour A into C", 0, B, (A + C)))
     if B > 0:
         if C_left > 0:
             if B > C_left:
-                MaybeAdd([indx, "Pour B into C", A, (B - C_left), C_capacity])
+                MaybeAdd((indx, "Pour B into C", A, (B - C_left), C_capacity))
             else:
-                MaybeAdd([indx, "Pour B into C", A, 0, (B + C)])
+                MaybeAdd((indx, "Pour B into C", A, 0, (B + C)))
         if A_left > 0:
             if B > A_left:
-                MaybeAdd([indx, "Pour B into A", A_capacity, (B - A_left), C])
+                MaybeAdd((indx, "Pour B into A", A_capacity, (B - A_left), C))
             else:
-                MaybeAdd([indx, "Pour B into A", (A + B), 0, C])
+                MaybeAdd((indx, "Pour B into A", (A + B), 0, C))
     if C > 0:
         if A_left > 0:
             if C > A_left:
-                MaybeAdd([indx, "Pour C into A", A_capacity, B, (C - A_left)])
+                MaybeAdd((indx, "Pour C into A", A_capacity, B, (C - A_left)))
             else:
-                MaybeAdd([indx, "Pour C into A", (A + C), B, 0])
+                MaybeAdd((indx, "Pour C into A", (A + C), B, 0))
         if B_left > 0:
             if C > B_left:
-                MaybeAdd([indx, "Pour C into B", A, B_capacity, (C - B_left)])
+                MaybeAdd((indx, "Pour C into B", A, B_capacity, (C - B_left)))
             else:
-                MaybeAdd([indx, "Pour C into B", A, (B + C), 0])
+                MaybeAdd((indx, "Pour C into B", A, (B + C), 0))
 
 A_capacity = int(input("What is the capacity of bucket A:"))
 B_capacity = int(input("What is the capacity of bucket B:"))
@@ -148,7 +148,7 @@ B_has = int(input("How much in bucket B initially:"))
 C_has = int(input("How much in bucket C initially:"))
 goal  = int(input("How much liquid is the goal:"))
 #first item is Backlink
-List = [[0, "Initial State", A_has, B_has, C_has]]
+List = [(0, "Initial State", A_has, B_has, C_has)]
 i = 0;
 k = len(List)
 Solution = False
