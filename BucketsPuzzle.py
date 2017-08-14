@@ -50,16 +50,16 @@
            with A_has, B_has and C_has is already on the list (We want shortest)
 '''
 
-def PrintSolution(i):
+def PrintSolution(i):               #traverse to the beginning and back up
     backindx, msg, a, b, c = List[i]
-    if i > 0:
+    if i > 0:                       # printing the text and the state
         PrintSolution(backindx)
     print(msg)
     print(a, b, c)
 
 
-def Solved (index):
-    bl,msg,A,B,C = List[index]
+def Solved (index):                 #if any bucket or any sum of buckets
+    bl,msg,A,B,C = List[index]      #contians the goal then we are done
     if goal is A:
         return True
     if goal is B:
@@ -79,24 +79,24 @@ def Solved (index):
 def MaybeAdd(listelement):
     indx, msg, Can_A, Can_B, Can_C = listelement
     for le in List:
-        indx, msg, A, B, C = le
-        if A != Can_A:
-            continue
-        if B != Can_B:
-            continue
+        indx, msg, A, B, C = le     #never put a state we already generated
+        if A != Can_A:              #on the list again. 1) there is a
+            continue                #shorter way to get to that state and 2)
+        if B != Can_B:              # we may loop only terminating when
+            continue                # forced to, or by lack of resources.
         if C != Can_C:
             continue
         return
     List.append(listelement)
 
 def Generate (indx):
-    bl,msg,A,B,C = List[indx]
+    bl,msg,A,B,C = List[indx]       #try all we can to from indx state
     if A > 0:
         MaybeAdd((indx, "Pour Out A", 0, B, C))
     if B > 0:
         MaybeAdd((indx, "Pour Out B", A, 0, C))
     if C > 0:
-        MaybeAdd((indx, "Pour Out C", A, B, C))
+        MaybeAdd((indx, "Pour Out C", A, B, 0))
     if A < A_capacity:
         MaybeAdd((indx, "Fill Up A", A_capacity, B, C))
     if B < B_capacity:
