@@ -59,7 +59,7 @@ def PrintSolution(i):               #traverse to the beginning and back up
 
 
 def Solved (index):                 #if any bucket or any sum of buckets
-    bl,msg,A,B,C = List[index]      #contians the goal then we are done
+    bl,msg,A,B,C = List[index]      #contains the goal then we are done
     if goal is A:
         return True
     if goal is B:

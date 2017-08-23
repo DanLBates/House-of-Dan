@@ -36,11 +36,11 @@
 #define  MAXSTRINGS 2000
 
 // Please change DATETIME and BASEREV when you change code!!!
-#define BASEREV "0.0"
+#define BASEREV "0.1"
 // While developing you can change following #if 1 to #if 0
 #if 1
 #define REV BASEREV
-#define DATETIME "16-June-2017"
+#define DATETIME "23-Aug-2017"
 #else
 #define REV BASEREV"+development"
 #define DATETIME __DATE__ " " __TIME__
@@ -404,7 +404,7 @@ void SelectAPracticePhrase (void)
             initSelectPhrase = selectPhrase;
         }//Been thru them all. We have wrapped around.
     }//after first time through
-    printf("Okay, I think I have a phrase ready for you!\n");
+    printf("Phrase selected. P/T/A>>>\n");
 }//SelectAPracticePhrase
 
 /*============================================================================*\
