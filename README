@@ -1,3 +1,4 @@
+House-of-Dan README 05-Sep-2017 3:56:16 pm
 House-of-Dan README 06-Jul-2017 6:07:01 pm
 
 I wanted to play with the  x86-64 architecture. The Ubuntu
@@ -469,6 +470,18 @@ to Linux a suitable replacement would have to be found.
 Note: this exercize program does not take the place of other
 learning help such as ARRL practice sessions.
 
+20170905
+
+Modified morse code practice to output a high frequency beep one
+second after finishing playing a phrase. So the learner can know to
+stop copying and select another phrase or whatever with the program.
+
+Sometimes events like phone calls interrupt Morse Code practice.
+added a - command which decrements the Play count by one. So if
+you are keeping track of exercizes the count become how many phrases
+are actually finished.
+
+Added some phrases to mcp.txt
 ======================================================================
 Of late (2017-07) I have been learning Python with the help of books
 and New Boston videos.
@@ -485,9 +498,9 @@ The operations permitted are:
 1) To empty a single bucket
 2) To fill a single bucket to capacity (ex: from a pond or a hose)
 3) To pour a Bucket x into a bucket y until one of these is true:
-	a) bucket x is empty and bucket y is not full.
-	b) bucket y is full (at capacity) and bucket x may or may not
-		have liquid left in it.
+        a) bucket x is empty and bucket y is not full.
+        b) bucket y is full (at capacity) and bucket x may or may not
+                have liquid left in it.
 
 The units can be anything since they apply to all the buckets
 (ex: gallons or barrels).

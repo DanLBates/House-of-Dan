@@ -36,11 +36,11 @@
 #define  MAXSTRINGS 2000
 
 // Please change DATETIME and BASEREV when you change code!!!
-#define BASEREV "0.1"
+#define BASEREV "0.2"
 // While developing you can change following #if 1 to #if 0
 #if 1
 #define REV BASEREV
-#define DATETIME "23-Aug-2017"
+#define DATETIME "06-Sep-2017"
 #else
 #define REV BASEREV"+development"
 #define DATETIME __DATE__ " " __TIME__
@@ -181,8 +181,8 @@ void DisplayMenu (void)
     printf("\n^P Play All                        ^R Resend last character");
     printf("\n^S select a test phrase Randomly   ^T Test you one char at a time");
     printf("\n^V Show Error Count                ^X quit/exit");
-    printf("\n^Z Whatever Test function we need! 0  Zero the Test Count.\n");
-    printf("\n");
+    printf("\n^Z Whatever Test function we need! 0  Zero the Test Count.");
+    printf("\n-  Decrement Play Count by 1\n");
     dodisplaymenu = FALSE;
 }//DisplayMenu
 
@@ -346,6 +346,8 @@ void PlayAll (void)
         ch = 's';
     printf("\n%d Phrase%c %d words in %5.2f seconds Played wpm=%5.2f\n",
            PlayCount, ch, wordcount, seconds + 0.005, wpm + 0.005);
+    Sleep(1000);
+    Beep(5000, 500);
 }//PlayAll
 
 /*============================================================================*\
@@ -404,7 +406,7 @@ void SelectAPracticePhrase (void)
             initSelectPhrase = selectPhrase;
         }//Been thru them all. We have wrapped around.
     }//after first time through
-    printf("Phrase selected. P/T/A>>>\n");
+    printf("Phrase selected. (P)lay/(T)est/(A)nswer>>>\n");
 }//SelectAPracticePhrase
 
 /*============================================================================*\
@@ -596,6 +598,12 @@ void MasterControlLoop (void)
         }//Zero the test count
         else if('!' == cmd)
             ErrorCounts = 0;
+        else if('-' == cmd)
+        {//goof, phone rung or other interruption
+            if(PlayCount > 0)
+                PlayCount--;
+            printf("\nPlayCount now %d\n", PlayCount);
+        }//goof, phone rung or other interruption
     }//Looking for a command
     printf("\n Problem MasterControlLoop should never fall through and it did!\n");
     exit(0);
