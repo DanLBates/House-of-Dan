@@ -483,6 +483,13 @@ are actually finished.
 
 Added some phrases to mcp.txt
 ======================================================================
+11-Sep-2017 4:20:15 pm
+I have experimented with TkInter and put a sample together for me to
+Use as a reference. This reference (a working Tkinter example I now
+include in my Git Hub account. Included MyTkinterRef.py
+Similarly I have experimented with the asyncio Python coroutines. I
+include that asyncio.py as well.
+of late (2017-09 And A MIT mooc course on edx
 Of late (2017-07) I have been learning Python with the help of books
 and New Boston videos.
 
