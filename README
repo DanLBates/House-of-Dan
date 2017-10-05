@@ -483,16 +483,19 @@ you are keeping track of exercizes the count become how many phrases
 are actually finished.
 
 Added some phrases to mcp.txt
+
 ======================================================================
 11-Sep-2017 4:20:15 pm
-I have experimented with TkInter and put a sample together for me to
-Use as a reference. This reference (a working Tkinter example I now
+I have experimented with TkInter and put a sample together to
+Use as a reference. This reference (a working Tkinter example) I now
 include in my Git Hub account. Included MyTkinterRef.py
-Similarly I have experimented with the asyncio Python coroutines. I
-include that asyncio.py as well.
-of late (2017-09 And A MIT mooc course on edx
-Of late (2017-07) I have been learning Python with the help of books
+Similarly I have experimented with the asyncio Python co-routines. I
+include asyncio.py as well.
+lately (2017-07) I have been learning Python with the help of books
 and New Boston videos.
+lately (2017-09) Also took an MIT mooc course on Python through edx.
+
+======================================================================
 
 To exercize some of the elegant features of Python I wrote this
 program which solves Bucket puzzles with up to 3 Buckets. I labeled
@@ -532,37 +535,37 @@ BucketPuzzle.py
 27-Sep-2017 5:41:46 pm     MultiCoreDes.py
 
 In my Python Learning I have now worked with the multiprocessing
-module. This is a Heavy Weight process instead of a light weight
-thread. The multiprocessing module try's to spread these amoung the
+module. This is a heavy weight process instead of light weight
+threads. The multiprocessing module trys to spread these amoung the
 available CPU cores. The entire process space is spawned including
 the Python Interpreter a lot like fork().
 
-What I did was to use pip to install the pyDes module. The has
+What I did was to use pip to install the pyDes module. This has
 within it processing for the Data Encryption Standard and triple-DES
 as well.
 
 These are each symetric block ciphers with block length being 8 bytes.
 
-As the DES standard became more dated an attempt was made to give it
+As the DES standard became more dated, an attempt was made to give it
 a little more life. Instead of one DES step with one 64 bit key, Three
 are used each with there own 64 bit key for a total of 192 bits of key.
 
 To encrypt one would use stage one to encrypt stage 2 to decrpyt and
-stage 3 to decrypt.
+stage 3 to encrypt.
 
 To decrypt use stage 3 to decrypt and stage 2 to encrypt and stage 1
 to decrypt.
 
-Having 4 cores on my Acer laptop worked out perfect.
+Having 4 cores on my Acer laptop worked out perfectly.
 
 I spawn 3 identical processes with different arguments. Each in a
 different core. The main process feeds queue q1 with 8 byte blocks
 of plain text.
 
-Process p1 takes 8 byte blocks from queue q1 encrypts
+Process p1 takes 8 byte blocks from queue q1, encrypts
 them with it's key and puts the result in queue q2.
 
-Process p2 takes it's data from queue q2 decrypts it and passes it
+Process p2 takes it's data from queue q2, decrypts it and passes it
 through queue q3.
 
 Process p3 takes what is passed to it though queue q3, encrypts it
@@ -570,10 +573,10 @@ and passes the result through queue qr to the main process.
 
 This happens in parallel. Making this a pipelined triple DES machine.
 
-I also use pyDes's triple des for a comparison. I check the results
+I also use pyDes's triple DES for a comparison. I check the results
 against each other.
 
-I also get timing information.
+I also got timing information.
 
 For 10,000 blocks the multicore pipelined implementation is 2.5 x
 the single core solution.
@@ -588,7 +591,7 @@ blocks it does better.
 While DES is a dated standard we could easily do the same with AES
 making a 3 or more stage AES.
 
-To run this load up MultiCoreDes.py. You can change the blocks for
+To run this, load up MultiCoreDes.py. You can change the blocks for
 the test at that point. If you want one thousand block you need to
 type in the
 
@@ -602,7 +605,7 @@ With the soon to come Quantum computers just maybe we can stay one
 step a head so the "North Koreans" don't read our private
 communications.
 
-This also clearly shows with multiple cores the hardware technic
+This also clearly shows with multiple cores the hardware technique
 of pipelining is a tool in the software engineers tool belt.
 
 in the GITHub MultiCoreDes.py.  Enjoy!
